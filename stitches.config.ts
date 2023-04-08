@@ -6,6 +6,7 @@ export const { styled } = createStitches({
       primary: "#0e45bb",
       secondary: "#175fe9",
       background: "#ecececd7",
+      backgroundDark: "#141414",
       black: "#000000",
       white: "#ffffff",
     },
@@ -16,6 +17,9 @@ export const { styled } = createStitches({
       5: "32px",
       6: "40px",
       7: "42px",
+      8: "48px",
+      9: "50px",
+      10: "52px",
     },
   },
 })

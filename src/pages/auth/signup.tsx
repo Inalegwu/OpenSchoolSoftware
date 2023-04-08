@@ -15,13 +15,26 @@ const SignupPage: BlitzPage = () => {
           height: "100vh",
           background: "$background",
           display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
           alignItems: "center",
-          justifyContent: "center",
         }}
       >
-        <SignupForm onSuccess={() => router.push(Routes.Home())} />
+        <Box
+          css={{
+            width: "50%",
+            height: "50%",
+            padding: "$4",
+            margin: "auto",
+            background: "$white",
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "10px",
+          }}
+        >
+          <SignupForm onSuccess={() => router.push(Routes.Home())} />
+        </Box>
       </Box>
     </Layout>
   )

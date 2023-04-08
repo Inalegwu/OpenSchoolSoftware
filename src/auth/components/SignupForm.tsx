@@ -12,20 +12,7 @@ type SignupFormProps = {
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
   return (
-    <Box
-      css={{
-        background: "$white",
-        padding: "$5",
-        borderRadius: "5px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        width: "80%",
-        height: "60%",
-        margin: "auto",
-      }}
-    >
+    <div>
       <h1>Create an Account</h1>
 
       <Form
@@ -55,7 +42,7 @@ export const SignupForm = (props: SignupFormProps) => {
           type="text"
         />
       </Form>
-    </Box>
+    </div>
   )
 }
 

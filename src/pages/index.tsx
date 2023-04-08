@@ -1,17 +1,10 @@
 import { Suspense } from "react"
-import Link from "next/link"
 import Layout from "src/core/layouts/Layout"
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
 import logout from "src/auth/mutations/logout"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes, BlitzPage } from "@blitzjs/next"
-import { Box, Button, LinkButton, Nav, StyledImage } from "src/styles/components"
-import { styled } from "stitches.config"
-import professor from "/public/images/undraw_professor_re_mj1s.svg"
-import Online from "/public/images/undraw_online_reading_np7n.svg"
-import customize from "/public/images/undraw_switches_1js3.svg"
-import hectic from "/public/images/undraw_heavy_box_agqi.svg"
-import timeline from "/public/images/undraw_events_re_98ue.svg"
+import { Box, Button, LinkButton, Nav, Title, Paragraph } from "src/styles/components"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -19,7 +12,7 @@ const UserInfo = () => {
 
   if (currentUser) {
     return (
-      <Box css={{ width: "20%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
+      <Box css={{ width: "25%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
         <LinkButton
           href={Routes.Dashboard()}
           css={{ fontWeight: "600", background: "transparent" }}
@@ -43,11 +36,11 @@ const UserInfo = () => {
     )
   } else {
     return (
-      <Box css={{ width: "20%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
-        <LinkButton css={{ fontSize: "13px" }} href={Routes.SignupPage()}>
+      <Box css={{ width: "25%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
+        <LinkButton variant="primary" href={Routes.SignupPage()}>
           Register Your School
         </LinkButton>
-        <LinkButton css={{ fontSize: "13px" }} href={Routes.LoginPage()}>
+        <LinkButton variant="primary" href={Routes.LoginPage()}>
           Login
         </LinkButton>
       </Box>
@@ -55,60 +48,96 @@ const UserInfo = () => {
   }
 }
 
-const Title = styled("h1", {
-  fontWeight: "bold",
-  fontSize: 20,
-})
-
-const Paragraph = styled("p", {
-  fontSize: "15px",
-  color: "#2e2e2e81",
-})
-
 const Home: BlitzPage = () => {
   return (
     <Layout title="Home">
-      <Box css={{ background: "$$background", width: "100%" }}>
+      {/* blob */}
+      <Box
+        css={{
+          position: "absolute",
+          zIndex: "0",
+          filter: "blur(600px)",
+          background: "linear-gradient(to right ,$primary,$secondary)",
+          height: "400px",
+          width: "400px",
+        }}
+      />
+      <Box css={{ background: "$background", width: "100%" }}>
         <Nav>
-          <Title>SchoolDeck</Title>
-          <Suspense fallback="Loading...">
-            <UserInfo />
-          </Suspense>
+          <Box
+            css={{
+              width: "95%",
+              margin: "auto",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
+            <Title>SchoolDeck</Title>
+            <Suspense fallback="Loading...">
+              <UserInfo />
+            </Suspense>
+          </Box>
         </Nav>
         {/* hero */}
-        <Box css={{ display: "flex", width: "100%", height: "94vh" }}>
+        <Box css={{ display: "flex", width: "100%", height: "100vh" }}>
           <Box
             css={{
               width: "50%",
               height: "100%",
-              padding: "$5",
+              padding: "$7",
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
               alignContent: "flex-start",
               justifyContent: "center",
+              gap: "$1",
             }}
           >
-            <Title css={{ fontSize: "30px" }}>SchoolDeck</Title>
+            <Title css={{ fontSize: "30px", color: "$primary" }}>SchoolDeck</Title>
             <Paragraph css={{ fontSize: "20px" }}>
-              The easiest way to manage your school without any overhead
+              The easiest way to manage your school without any overhead.All you have to do is bring
+              your data,We&apos;ll do the rest
             </Paragraph>
           </Box>
-          <Box css={{ width: "50%", padding: "$5" }}>
-            <StyledImage
-              src={professor}
-              css={{ height: "100%", width: "90%", objectFit: "contain" }}
-              alt="professor"
+          <Box
+            css={{
+              width: "50%",
+              padding: "$7",
+              display: "flex",
+              flexDirection: "column",
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* details box */}
+            <Box
+              css={{
+                background: "$backgroundDark",
+                height: "60%",
+                borderRadius: "10px",
+                width: "90%",
+                padding: "$7",
+                boxShadow: "0px 10px 20px 0px #000000",
+              }}
             />
           </Box>
         </Box>
         {/* first secion */}
         <Box css={{ display: "flex", width: "100%", height: "100vh" }}>
-          <Box css={{ width: "50%", height: "100%", padding: "$5" }}>
-            <StyledImage
-              src={Online}
-              css={{ height: "100%", width: "90%", objectFit: "contain" }}
-              alt="professor"
+          <Box css={{ width: "50%", height: "100%", padding: "$7" }}>
+            {/* details box */}
+            <Box
+              css={{
+                background: "$backgroundDark",
+                height: "60%",
+                borderRadius: "10px",
+                width: "90%",
+                padding: "$7",
+                boxShadow: "0px 10px 20px 0px #000000",
+              }}
             />
           </Box>
           <Box
@@ -121,6 +150,7 @@ const Home: BlitzPage = () => {
               alignItems: "flex-end",
               alignContent: "flex-end",
               justifyContent: "center",
+              gap: "$1",
             }}
           >
             <Title css={{ fontSize: "30px" }}>Digitalize Your School</Title>
@@ -136,12 +166,13 @@ const Home: BlitzPage = () => {
             css={{
               width: "50%",
               height: "100%",
-              padding: "$5",
+              padding: "$7",
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
               alignContent: "flex-start",
               justifyContent: "center",
+              gap: "$1",
             }}
           >
             <Title css={{ fontSize: "30px" }}>Streamline The Most Hectic Moments</Title>
@@ -150,27 +181,47 @@ const Home: BlitzPage = () => {
               , But not anymore. use our tools to make saving scores from exams as easy as a
               download
             </Paragraph>
-            <Paragraph css={{ marginTop: "4px", fontSize: "10px", fontStyle: "italic" }}>
-              Scores From Exams are Automatically Filled in From The Exam Portal For Each
-              Student.Grading Has Never Been Easier
-            </Paragraph>
           </Box>
-          <Box css={{ width: "50%", height: "100%", padding: "$5" }}>
-            <StyledImage
-              src={hectic}
-              css={{ height: "100%", width: "90%", objectFit: "contain" }}
-              alt="professor"
+          <Box css={{ width: "50%", height: "100%", padding: "$7" }}>
+            {/* details box */}
+            <Box
+              css={{
+                background: "$backgroundDark",
+                height: "60%",
+                borderRadius: "10px",
+                width: "90%",
+                padding: "$7",
+                boxShadow: "0px 10px 20px 0px #000000",
+              }}
             />
           </Box>
         </Box>
       </Box>
       {/* third secion */}
       <Box css={{ display: "flex", width: "100%", height: "100vh" }}>
-        <Box css={{ width: "50%", height: "100%", padding: "$5" }}>
-          <StyledImage
-            src={customize}
-            css={{ height: "100%", width: "90%", objectFit: "contain" }}
-            alt="professor"
+        <Box css={{ width: "50%", height: "100%", padding: "$7" }}>
+          {/* blob */}
+          <Box
+            css={{
+              position: "absolute",
+              zIndex: "0",
+              filter: "blur(600px)",
+              background: "$secondary",
+              height: "400px",
+              width: "400px",
+              left: "70%",
+            }}
+          />
+          {/* details box */}
+          <Box
+            css={{
+              background: "$backgroundDark",
+              height: "60%",
+              borderRadius: "10px",
+              width: "90%",
+              padding: "$7",
+              boxShadow: "0px 10px 20px 0px #000000",
+            }}
           />
         </Box>
         <Box
@@ -183,9 +234,10 @@ const Home: BlitzPage = () => {
             alignItems: "flex-end",
             alignContent: "flex-end",
             justifyContent: "center",
+            gap: "$1",
           }}
         >
-          <Title css={{ fontSize: "30px" }}>Customize To Fit You</Title>
+          <Title css={{ fontSize: "30px", color: "$black" }}>Customize To Fit You</Title>
           <Paragraph css={{ fontSize: "20px" }}>
             Customize everything from grading criteria to entry thresholds and we&apos;ll keep track
             of all of it
@@ -202,7 +254,8 @@ const Home: BlitzPage = () => {
             alignItems: "flex-start",
             alignContent: "flex-start",
             justifyContent: "center",
-            padding: "$5",
+            padding: "$7",
+            gap: "$1",
           }}
         >
           <Title>Class Schedules? Easy</Title>
@@ -211,15 +264,64 @@ const Home: BlitzPage = () => {
             Immediately.No More Sheets Of Paper
           </Paragraph>
         </Box>
-        <Box css={{ width: "50%", padding: "$5" }}>
-          <StyledImage
-            src={timeline}
-            alt="timeline"
-            css={{ height: "100%", width: "90%", objectFit: "contain" }}
+        <Box css={{ width: "50%", padding: "$7" }}>
+          <Box
+            css={{
+              background: "$backgroundDark",
+              height: "60%",
+              borderRadius: "10px",
+              width: "90%",
+              padding: "$7",
+              boxShadow: "0px 10px 10px 0px #000000",
+            }}
           />
         </Box>
       </Box>
-      <Box css={{ width: "100%", background: "$black", height: "60vh", display: "flex" }}></Box>
+      {/* footer */}
+      <Box css={{ width: "100%", background: "$black", height: "70vh", display: "flex" }}>
+        <Box
+          css={{
+            width: "33.3%",
+            display: "flex",
+            flexDirection: "column",
+            padding: "$5",
+            gap: "$4",
+          }}
+        >
+          <Title css={{ color: "white" }}>School Deck</Title>
+          <Box css={{ width: "100%", display: "flex", gap: "$2" }}>
+            <LinkButton
+              href=""
+              css={{
+                background: "$backgroundDark",
+                height: "10px",
+                width: "10px",
+                borderRadius: "50%",
+              }}
+            ></LinkButton>
+            <LinkButton
+              href=""
+              css={{
+                background: "$backgroundDark",
+                height: "10px",
+                width: "10px",
+                borderRadius: "50%",
+              }}
+            ></LinkButton>
+            <LinkButton
+              href=""
+              css={{
+                background: "$backgroundDark",
+                height: "10px",
+                width: "10px",
+                borderRadius: "50%",
+              }}
+            ></LinkButton>
+          </Box>
+        </Box>
+        <Box css={{ width: "33.3%" }}></Box>
+        <Box css={{ width: "33.3%" }}></Box>
+      </Box>
     </Layout>
   )
 }
