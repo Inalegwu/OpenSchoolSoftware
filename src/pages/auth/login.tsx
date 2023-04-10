@@ -21,8 +21,8 @@ const LoginPage: BlitzPage = () => {
       >
         <Box
           css={{
-            width: "80%",
-            height: "80%",
+            width: "60%",
+            height: "60%",
             background: "$white",
             padding: "$5",
             margin: "auto",

@@ -9,6 +9,7 @@ export const LinkButton = styled(Link, {
   background: "#ececec",
   color: "$black",
   fontSize: "12px",
+  fontWeight: "600",
 
   variants: {
     variant: {

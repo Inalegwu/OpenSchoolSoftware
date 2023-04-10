@@ -5,9 +5,11 @@ export const Button = styled("button", {
   padding: "$1",
   background: "$background",
   cursor: "pointer",
+  fontWeight: "600",
+  outline: "none",
 
   "&:hover": {
-    background: "$primary",
+    background: "$secondary",
     color: "$white",
   },
 

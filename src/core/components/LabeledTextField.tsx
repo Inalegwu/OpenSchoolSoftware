@@ -1,7 +1,7 @@
 import { forwardRef, PropsWithoutRef, ComponentPropsWithoutRef } from "react"
 import { useFormContext } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { Input } from "src/styles/components"
+import { Box, Input } from "src/styles/components"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
@@ -22,7 +22,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
     } = useFormContext()
 
     return (
-      <div {...outerProps}>
+      <Box css={{ gap: "$2" }} {...outerProps}>
         <label {...labelProps}>
           {label}
           <Input css={{ width: "98%" }} disabled={isSubmitting} {...register(name)} {...props} />
@@ -54,7 +54,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
             margin-top: 0.5rem;
           }
         `}</style>
-      </div>
+      </Box>
     )
   }
 )

@@ -3,6 +3,8 @@ import React, { FC } from "react"
 import { BlitzLayout } from "@blitzjs/next"
 import { Box } from "src/styles/components"
 
+export const dynamic = "force-dynamic"
+
 const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
   title,
   children,

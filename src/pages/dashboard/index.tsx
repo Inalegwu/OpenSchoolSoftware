@@ -1,125 +1,78 @@
-import { BlitzPage, Routes } from "@blitzjs/next"
+import { BlitzPage, Ctx, Routes } from "@blitzjs/next"
 import { useMutation } from "@blitzjs/rpc"
-import { Router } from "next/router"
+import { MemberShipRole } from "@prisma/client"
 import React, { Suspense } from "react"
 import logout from "src/auth/mutations/logout"
-import Layout from "src/core/layouts/Layout"
+import Loading from "src/core/components/Loading"
+import DashboardLayout from "src/dashboard/layouts/Layout"
 import { useMySchool } from "src/school/hooks/useMySchool"
-import { Box, Button, LinkButton } from "src/styles/components"
+import { Box, Button, Title, Paragraph } from "src/styles/components"
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
-import { styled } from "stitches.config"
-
-const Title = styled("h1", {
-  fontSize: "20px",
-  color: "$primary",
-})
-const Paragraph = styled("p", {
-  fontSize: "12px",
-})
-
-const actions = ["HOME", "STUDENTS", "SCHEDULE", "EXAMS", "CLASSES"]
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const mySchool = useMySchool()
+  const [logoutMutation, { isLoading }] = useMutation(logout)
   return (
-    <Box css={{ width: "100%", padding: "$1" }}>
-      <Title css={{ fontSize: "15px" }}>{currentUser?.email}</Title>
-      <Paragraph css={{ fontWeight: "bold" }}>
-        {currentUser?.memberShips[0]?.role}-{mySchool?.schoolName}
-      </Paragraph>
+    <Box css={{ width: "80%", height: "70%", background: "$black", borderRadius: "10px" }}>
+      <Box
+        css={{
+          height: "6%",
+          background: "transparent",
+          padding: "$4",
+          display: "flex",
+          alignItems: "center",
+          alignContent: "center",
+          justifyContent: "space-between",
+          borderRadius: "10px",
+        }}
+      >
+        <Box>
+          <Title css={{ color: "$white" }}>{mySchool?.schoolName}</Title>
+          <Paragraph css={{ color: "$white" }}>
+            {currentUser?.email}-{currentUser?.memberShips[0]?.role}
+          </Paragraph>
+        </Box>
+        <Button
+          onClick={async () => {
+            await logoutMutation()
+          }}
+          css={{ width: "20%", borderRadius: "99999px" }}
+          variant="primary"
+        >
+          Logout
+        </Button>
+      </Box>
+      <Box css={{ height: "94%", borderRadius: "10px", padding: "$4" }}>
+        <Title css={{ color: "$white" }}>Students-{mySchool?.students.length}</Title>
+        <Title css={{ color: "$white" }}>Teachers-{mySchool?.teachers.length}</Title>
+      </Box>
     </Box>
   )
 }
 
 const Dashboard: BlitzPage = () => {
-  const [logoutMutation] = useMutation(logout)
-  const [globalAction, setGlobalAction] = React.useState<string>("HOME")
-
   return (
-    <Layout title="Dashboard">
-      <Box css={{ width: "100%", background: "$background", height: "100vh", display: "flex" }}>
-        <Box
-          css={{
-            width: "20%",
-            background: "$white",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            padding: "$1",
-            gap: "$2",
-          }}
-        >
-          <Title>OpenSchoolSoftware</Title>
-          <Box
-            css={{
-              height: "80%",
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "$2",
-            }}
-          >
-            {actions.map((action, index) => {
-              return (
-                <Button
-                  onClick={() => {
-                    setGlobalAction(action)
-                  }}
-                  key={index}
-                  css={{
-                    borderRadius: "99999px",
-                    textAlign: "flex-start",
-                    display: "flex",
-                    background: `${globalAction === action ? "$primary" : "transparent"}`,
-                    color: `${globalAction === action ? "$white" : "$black"}`,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {action}
-                </Button>
-              )
-            })}
-          </Box>
-          <Box
-            css={{
-              height: "20%",
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              justifyContent: "flex-end",
-              gap: "$2",
-            }}
-          >
-            <Suspense fallback="Loading...">
-              <UserInfo />
-            </Suspense>
-            <LinkButton href={Routes.Home()} css={{ width: "95%", background: "transparent" }}>
-              Go Back
-            </LinkButton>
-            <Button
-              css={{
-                borderRadius: "99999px",
-                color: "white",
-                background: "$primary",
-                width: "100%",
-              }}
-              onClick={async () => {
-                await logoutMutation()
-              }}
-            >
-              Logout
-            </Button>
-          </Box>
-        </Box>
-        <Box css={{ width: "80%", height: "100%", background: "$white" }}></Box>
+    <DashboardLayout>
+      <Box
+        css={{
+          width: "100%",
+          height: "100vh",
+          background: "$backgroundDark",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Suspense fallback={<Loading />}>
+          <UserInfo />
+        </Suspense>
       </Box>
-    </Layout>
+    </DashboardLayout>
   )
 }
 
+Dashboard.authenticate = { redirectTo: Routes.LoginPage() }
 Dashboard.suppressFirstRenderFlicker = true
-Dashboard.authenticate
 export default Dashboard

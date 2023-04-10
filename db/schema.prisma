@@ -29,7 +29,7 @@ model School{
 
   schoolName String
 
-  teachers MemberShip[]
+  teachers Teacher[]
   students Student[]
 }
 
@@ -42,12 +42,15 @@ model Student{
   userId String? @unique
   user User? @relation()
 
+  classId String?
+  class Class? @relation(fields: [classId],references: [id])
+
 
   @@unique([schoolId,userId])
 
 }
 
-model MemberShip{
+model Teacher{
   id String @id @default(uuid())
   role MemberShipRole @default(USER)
 
@@ -60,7 +63,47 @@ model MemberShip{
   invitedName String?
   invitedEmail String?
 
+  classId String? @unique
+  class Class? @relation()
+
+  scheduleId String? @unique
+  schedule TeacherSchedule? @relation()
+
   @@unique([schoolId,invitedEmail])
+
+}
+
+model Class{
+  id String @id @default(cuid())
+  className String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  scheduleDateTime DateTime
+
+  teacherId String? @unique
+  teacher Teacher? @relation(fields: [teacherId],references: [id])
+
+  students Student[]
+
+  schedules TeacherSchedule[]
+
+}
+
+model TeacherSchedule{
+  id String @id @default(cuid())
+
+  scheduleName String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  
+  teacherId String @unique
+  teacher Teacher @relation(fields: [teacherId],references: [id])
+
+  classes Class[]
 
 }
 
@@ -75,11 +118,10 @@ model User {
 
   tokens   Token[]
   sessions Session[]
-  memberShips MemberShip[]
+  memberShips Teacher[]
 
   studentId String? @unique
   student Student? @relation(fields: [studentId],references: [id])
-
 }
 
 model Session {

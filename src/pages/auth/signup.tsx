@@ -22,14 +22,11 @@ const SignupPage: BlitzPage = () => {
           css={{
             width: "50%",
             height: "50%",
-            padding: "$4",
+            padding: "$7",
             margin: "auto",
             background: "$white",
             display: "flex",
             flexDirection: "column",
-            alignContent: "center",
-            alignItems: "center",
-            justifyContent: "center",
             borderRadius: "10px",
           }}
         >
