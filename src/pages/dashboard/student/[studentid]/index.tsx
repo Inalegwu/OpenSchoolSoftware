@@ -18,7 +18,7 @@ const StudentData = ({ studentId }: StudentDataProps) => {
       css={{
         width: "80%",
         height: "70%",
-        background: "$white",
+        background: "$black",
         borderRadius: "10px",
         padding: "$2",
         display: "flex",

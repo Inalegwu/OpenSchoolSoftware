@@ -16,7 +16,7 @@ const TeachersView = () => {
     },
   })
   return (
-    <Box css={{ width: "80%", height: "75%", background: "$white", borderRadius: "10px" }}>
+    <Box css={{ width: "80%", height: "75%", background: "$black", borderRadius: "10px" }}>
       <Box
         css={{
           height: "6%",
@@ -28,8 +28,8 @@ const TeachersView = () => {
           justifyContent: "space-between",
         }}
       >
-        <Title>My Teachers</Title>
-        <LinkButton variant="outline" href={Routes.InviteTeacher()}>
+        <Title css={{ color: "$white" }}>My Teachers</Title>
+        <LinkButton variant="primary" href={Routes.InviteTeacher()}>
           Invite A Teacher
         </LinkButton>
       </Box>
@@ -40,7 +40,7 @@ const TeachersView = () => {
               css={{
                 width: "98%",
                 height: "6vh",
-                background: "$background",
+                background: "$backgroundDark",
                 borderRadius: "5px",
                 padding: "$1",
                 display: "flex",
@@ -69,9 +69,9 @@ const TeachersView = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     alignContent: "center",
-                    background: "$white",
+                    background: "$black",
                     borderRadius: "5px",
-                    "&:hover": { background: "$background" },
+                    "&:hover": { background: "$black" },
                   }}
                   href={Routes.TeacherPage({ teacherId: teacher.id })}
                 >
@@ -86,9 +86,9 @@ const TeachersView = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     alignContent: "center",
-                    background: "$white",
+                    background: "$black",
                     borderRadius: "5px",
-                    "&:hover": { background: "$background" },
+                    "&:hover": { background: "$black" },
                   }}
                 >
                   <FiTrash size={16} color="red" />

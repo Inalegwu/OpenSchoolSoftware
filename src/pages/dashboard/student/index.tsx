@@ -60,11 +60,11 @@ const StudentsView = () => {
       >
         {students?.map((student) => {
           return (
-            <Button
+            <Box
               key={student.user?.studentId}
               css={{
-                width: "100%",
-                height: "8vh",
+                width: "97%",
+                height: "5vh",
                 display: "flex",
                 alignItems: "center",
                 alignContent: "center",
@@ -73,7 +73,7 @@ const StudentsView = () => {
                 padding: "$2",
                 borderRadius: "5px",
                 "&:hover": {
-                  background: "$background",
+                  background: "$backgroundDark",
                 },
               }}
             >
@@ -96,7 +96,7 @@ const StudentsView = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     alignContent: "center",
-                    background: "$white",
+                    background: "$black",
                     borderRadius: "5px",
                     "&:hover": { background: "$black" },
                   }}
@@ -113,15 +113,15 @@ const StudentsView = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     alignContent: "center",
-                    background: "$white",
                     borderRadius: "5px",
+                    background: "$black",
                     "&:hover": { background: "$black" },
                   }}
                 >
                   <FiTrash size={16} color="red" />
                 </Button>
               </Box>
-            </Button>
+            </Box>
           )
         })}
       </Box>

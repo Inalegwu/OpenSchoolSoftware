@@ -13,18 +13,28 @@ const SignupPage: BlitzPage = () => {
         css={{
           width: "100%",
           height: "100vh",
-          background: "$background",
+          background: "$backgroundDark",
           display: "flex",
           alignItems: "center",
         }}
       >
         <Box
           css={{
+            position: "absolute",
+            height: "400px",
+            width: "400px",
+            filter: "blur(400px)",
+            zIndex: "0",
+            background: "$primary",
+          }}
+        />
+        <Box
+          css={{
             width: "50%",
             height: "50%",
             padding: "$7",
             margin: "auto",
-            background: "$white",
+            background: "$black",
             display: "flex",
             flexDirection: "column",
             borderRadius: "10px",

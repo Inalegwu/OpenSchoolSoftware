@@ -13,7 +13,7 @@ const LoginPage: BlitzPage = () => {
         css={{
           width: "100%",
           height: "100vh",
-          background: "$background",
+          background: "$backgroundDark",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -21,9 +21,19 @@ const LoginPage: BlitzPage = () => {
       >
         <Box
           css={{
+            height: "500px",
+            width: "500px",
+            background: "$primary",
+            filter: "blur(400px)",
+            position: "absolute",
+            zIndex: "0",
+          }}
+        />
+        <Box
+          css={{
             width: "60%",
             height: "60%",
-            background: "$white",
+            background: "$black",
             padding: "$5",
             margin: "auto",
             display: "flex",

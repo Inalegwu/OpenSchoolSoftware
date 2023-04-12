@@ -15,21 +15,13 @@ const UserInfo = () => {
       <Box css={{ width: "25%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
         <LinkButton
           href={Routes.Dashboard()}
-          css={{ fontWeight: "600", background: "transparent" }}
+          variant="ghost"
+          css={{ fontWeight: "600", background: "transparent", fontSize: "13px" }}
         >
           Dashboard
         </LinkButton>
         <Button
-          css={{
-            borderRadius: "9999px",
-            fontSize: "12px",
-            fontWeight: "bold",
-            background: "transparent",
-            "&:hover": {
-              background: "none",
-              color: "$primary",
-            },
-          }}
+          variant="ghost"
           onClick={async () => {
             await logoutMutation()
           }}
@@ -40,11 +32,26 @@ const UserInfo = () => {
     )
   } else {
     return (
-      <Box css={{ width: "25%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
-        <LinkButton variant="primary" href={Routes.SignupPage()}>
+      <Box css={{ width: "30%", display: "flex", justifyContent: "flex-end", gap: "$2" }}>
+        <LinkButton
+          css={{ fontSize: "13px", fontWeight: "bold" }}
+          href={Routes.ApplyPage()}
+          variant="ghost"
+        >
+          Apply To Schools
+        </LinkButton>
+        <LinkButton
+          css={{ fontSize: "13px", fontWeight: "bold" }}
+          variant="ghost"
+          href={Routes.SignupPage()}
+        >
           Register Your School
         </LinkButton>
-        <LinkButton variant="primary" href={Routes.LoginPage()}>
+        <LinkButton
+          css={{ fontSize: "13px", fontWeight: "bold" }}
+          variant="ghost"
+          href={Routes.LoginPage()}
+        >
           Login
         </LinkButton>
       </Box>
@@ -54,14 +61,14 @@ const UserInfo = () => {
 
 const Home: BlitzPage = () => {
   return (
-    <Layout title="Home">
+    <Layout title="School Deck">
       {/* blob */}
       <Box
         css={{
           position: "absolute",
           zIndex: "0",
           filter: "blur(600px)",
-          background: "linear-gradient(to right ,$primary,$secondary)",
+          background: "$primary",
           height: "400px",
           width: "400px",
         }}
@@ -159,6 +166,7 @@ const Home: BlitzPage = () => {
               alignContent: "flex-end",
               justifyContent: "center",
               gap: "$1",
+              textAlign: "right",
             }}
           >
             {/* blob */}
@@ -167,7 +175,7 @@ const Home: BlitzPage = () => {
                 position: "absolute",
                 zIndex: "0",
                 filter: "blur(600px)",
-                background: "linear-gradient(to right ,$primary,$secondary)",
+                background: "$primary",
                 height: "400px",
                 width: "400px",
               }}
@@ -202,7 +210,7 @@ const Home: BlitzPage = () => {
                 position: "absolute",
                 zIndex: "0",
                 filter: "blur(600px)",
-                background: "linear-gradient(to right ,$primary,$secondary)",
+                background: "$primary",
                 height: "400px",
                 width: "400px",
               }}
@@ -240,7 +248,7 @@ const Home: BlitzPage = () => {
               position: "absolute",
               zIndex: "0",
               filter: "blur(400px)",
-              background: "$secondary",
+              background: "$primary",
               height: "400px",
               width: "400px",
               left: "70%",
@@ -269,6 +277,7 @@ const Home: BlitzPage = () => {
             alignContent: "flex-end",
             justifyContent: "center",
             gap: "$1",
+            textAlign: "right",
           }}
         >
           <Title css={{ fontSize: "30px", color: "$primary" }}>Customize To Fit You</Title>
@@ -279,37 +288,66 @@ const Home: BlitzPage = () => {
         </Box>
       </Box>
       {/* fourth section */}
-      <Box css={{ width: "100%", height: "100vh", display: "flex", background: "$backgroundDark" }}>
+      <Box css={{ display: "flex", width: "100%", height: "100vh", background: "$backgroundDark" }}>
         <Box
           css={{
             width: "50%",
+            height: "100%",
+            padding: "$5",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
             alignContent: "flex-start",
             justifyContent: "center",
-            padding: "$7",
             gap: "$1",
           }}
         >
+          <Title css={{ fontSize: "30px", color: "$primary" }}>Apply Or Be Applied To</Title>
+          <Paragraph css={{ fontSize: "20px", color: "$white" }}>
+            Are you a Student? Apply To Schools On Our Platform with Ease.Are you a School ? Manage
+            Applications To Your School Right From The Dashboard
+          </Paragraph>
+        </Box>
+        <Box css={{ width: "50%", height: "100%", padding: "$7" }}>
+          {/* blob */}
+          <Box
+            css={{
+              position: "absolute",
+              zIndex: "0",
+              filter: "blur(400px)",
+              background: "$primary",
+              height: "400px",
+              width: "400px",
+              left: "70%",
+            }}
+          />
+          {/* details box */}
+          <Box
+            css={{
+              background: "$black",
+              height: "60%",
+              borderRadius: "10px",
+              width: "90%",
+              padding: "$7",
+              boxShadow: "0px 10px 20px 0px #000000",
+            }}
+          />
+        </Box>
+      </Box>
+      {/* fifth section */}
+      <Box css={{ width: "100%", height: "100vh", display: "flex", background: "$backgroundDark" }}>
+        <Box css={{ width: "50%", padding: "$7" }}>
           {/* blob */}
           <Box
             css={{
               position: "absolute",
               zIndex: "0",
               filter: "blur(500px)",
-              background: "linear-gradient(to right ,$primary,$secondary)",
+              background: "$primary",
               height: "400px",
               width: "400px",
             }}
           />
-          <Title css={{ fontSize: "30px", color: "$primary" }}>Class Schedules? Easy</Title>
-          <Paragraph css={{ fontSize: "20px", color: "$white" }}>
-            Your Teachers Can Now Manage and Update Their Class Schedules and Have It Everywhere
-            Immediately.No More Sheets Of Paper
-          </Paragraph>
-        </Box>
-        <Box css={{ width: "50%", padding: "$7" }}>
           <Box
             css={{
               background: "$black",
@@ -320,6 +358,25 @@ const Home: BlitzPage = () => {
               boxShadow: "0px 10px 10px 0px #000000",
             }}
           />
+        </Box>
+        <Box
+          css={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            alignContent: "flex-end",
+            justifyContent: "center",
+            padding: "$7",
+            gap: "$1",
+            textAlign: "right",
+          }}
+        >
+          <Title css={{ fontSize: "30px", color: "$primary" }}>Class Schedules? Easy</Title>
+          <Paragraph css={{ fontSize: "20px", color: "$white" }}>
+            Your Teachers Can Now Manage and Update Their Class Schedules and Have It Everywhere
+            Immediately.No More Sheets Of Paper
+          </Paragraph>
         </Box>
       </Box>
       {/* footer */}
@@ -334,7 +391,7 @@ const Home: BlitzPage = () => {
           justifyContent: "center",
         }}
       >
-        <Paragraph css={{ color: "$primary" }}>Made With 🖤</Paragraph>
+        <Paragraph css={{ color: "$primary", fontWeight: "bolder" }}>Made With 🖤</Paragraph>
       </Box>
     </Layout>
   )

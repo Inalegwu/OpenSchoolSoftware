@@ -28,6 +28,7 @@ export const LinkButton = styled(Link, {
       },
       ghost: {
         background: "transparent",
+        color: "$primary",
       },
     },
   },

@@ -5,4 +5,8 @@ beforeEach(async () => {
   await db.$reset()
 })
 
-describe("invite teacher mailer and mutation", () => {})
+// TODO test
+
+describe("invite teacher mailer and mutation", () => {
+  it("should create a new user in the database", async () => {})
+})

@@ -24,6 +24,17 @@ enum GlobalRole{
   CUSTOMER
 }
 
+model Application{
+  id String @id @default(uuid())
+
+  studentId String @unique
+  student Student @relation(fields: [studentId],references: [id])
+  
+  schoolId String @unique
+  school School @relation(fields: [schoolId],references: [id])
+
+}
+
 model School{
   id String @id @default(uuid())
 
@@ -31,6 +42,7 @@ model School{
 
   teachers Teacher[]
   students Student[]
+  applications Application[]
 }
 
 model Student{
@@ -44,6 +56,9 @@ model Student{
 
   classId String?
   class Class? @relation(fields: [classId],references: [id])
+
+  applicationId String? @unique
+  application Application? @relation()
 
 
   @@unique([schoolId,userId])

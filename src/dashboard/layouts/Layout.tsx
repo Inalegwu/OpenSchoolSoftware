@@ -4,24 +4,40 @@ import { Suspense } from "react"
 import { Box, LinkButton } from "src/styles/components"
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
 
-const ManageTeachers = () => {
+const ManageSchool = () => {
   const currentUser = useCurrentUser()
   if (currentUser?.role === "CUSTOMER" && currentUser.memberShips[0]?.role === "OWNER") {
     return (
-      <LinkButton
-        css={{
-          width: "6%",
-          display: "flex",
-          alignItems: "center",
-          alignContent: "center",
-          justifyContent: "center",
-          background: "$black",
-          color: "$white",
-        }}
-        href={Routes.TeachersPage()}
-      >
-        Teachers
-      </LinkButton>
+      <>
+        <LinkButton
+          css={{
+            width: "6%",
+            display: "flex",
+            alignItems: "center",
+            alignContent: "center",
+            justifyContent: "center",
+            background: "$black",
+            color: "$white",
+          }}
+          href={Routes.TeachersPage()}
+        >
+          Teachers
+        </LinkButton>
+        <LinkButton
+          css={{
+            width: "6%",
+            display: "flex",
+            alignItems: "center",
+            alignContent: "center",
+            justifyContent: "center",
+            background: "$black",
+            color: "$white",
+          }}
+          href={Routes.ApplicationsPage()}
+        >
+          Applications
+        </LinkButton>
+      </>
     )
   } else {
     return <></>
@@ -88,7 +104,7 @@ const DashboardLayout: BlitzLayout<{ children: React.ReactNode | React.ReactNode
           Students
         </LinkButton>
         <Suspense fallback="Loading...">
-          <ManageTeachers />
+          <ManageSchool />
         </Suspense>
       </Box>
       {children}

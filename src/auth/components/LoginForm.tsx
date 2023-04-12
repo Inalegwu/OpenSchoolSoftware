@@ -6,7 +6,7 @@ import login from "src/auth/mutations/login"
 import { Login } from "src/auth/schemas"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes } from "@blitzjs/next"
-import { Box, LinkButton, StyledForm } from "src/styles/components"
+import { Box, LinkButton, StyledForm, Title } from "src/styles/components"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -16,7 +16,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
   return (
     <div>
-      <h1>Login</h1>
+      <Title css={{ color: "$primary", fontSize: "30px" }}>Login</Title>
 
       <StyledForm
         css={{ display: "flex", flexDirection: "column", gap: "$4" }}

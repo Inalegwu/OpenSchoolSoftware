@@ -3,7 +3,7 @@ import { Form, FORM_ERROR } from "src/core/components/Form"
 import signup from "src/auth/mutations/signup"
 import { Signup } from "src/auth/schemas"
 import { useMutation } from "@blitzjs/rpc"
-import { StyledForm } from "src/styles/components"
+import { StyledForm, Title } from "src/styles/components"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -13,11 +13,11 @@ export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
   return (
     <div>
-      <h1>Create an Account</h1>
+      <Title css={{ fontSize: "30px", color: "$primary" }}>Register Your School</Title>
 
       <StyledForm
         css={{ gap: "$4", display: "flex", flexDirection: "column" }}
-        submitText="Create Account"
+        submitText="Register"
         schema={Signup}
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values) => {
